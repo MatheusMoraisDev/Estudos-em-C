@@ -10,6 +10,8 @@
         "**/templates/**/*.html": "django-html",
         "**/base_templates/**/*.html": "django-html",
         "**/requirements{/**,*}.{txt,in}": "pip-requirements",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp"
     }
 }

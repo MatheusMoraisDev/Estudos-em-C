@@ -1,20 +1,21 @@
-//Crie um algoritmo que tenha um vetor expl√≠cito para armazenar 5 idades e um vetor n√£o expl√≠cito para 
-//armazenar 5 nomes. Ao final exiba o nome da pessoa de maior idade, menor idade, a m√©dia das idades 
-//√© o saldo das idades.
+#include <iostream>
+#include <math.h>
+#include <cstdlib>
+#include <string>
 
-#include "iostream"
-#include "math.h"
-#include "cstdlib"
 using namespace std;
 
-int idade [] = { 5, 18, 19, 30, 45 };
-string nomes[5];
-int maior=0, menor=0;
+int idade[] = { 5, 18, 19, 30, 45, 60 };
+string nomes[6];
+int maior = 0, menor = 0;
+float media = 0;
 
- 
+
 void maiorMenor();
 void principal ();
+float MediaVetor();
 void Mostrar();
+void RegistrarNomes();
 
 
 int main () 
@@ -32,12 +33,15 @@ void principal()
   {
     system("cls");
     cout << "\n***Menu de Controle***";
-    cout << "\n1 Registrar Nomes\n 2 Maior e Menor\n 3 M√©dia\n0 Finalizar\nitem>";
+    cout << "\n1 Executar\n2 Sair\nitem>";
     cin >> item; 
 
     switch(item)
       {
-        case 1: maiorMenor();
+        case 1: 
+                RegistrarNomes();
+                maiorMenor();
+                media = MediaVetor(); // atribui o valor retornado da funÁ„o ‡ vari·vel media
                 Mostrar();
                 system("PAUSE");
                 break;
@@ -45,7 +49,7 @@ void principal()
         case 2: exit(0);
                 break;
         
-        default : cout << "\nErro de op√ß√£o!\n";
+        default : cout << "\nErro de opÁ„o!\n";
                   break;
       }
   
@@ -67,11 +71,36 @@ void maiorMenor ()
     {
       menor = idade[i];
     }
+  }
 }
+ 
+void RegistrarNomes(){
+  int tamanho = 6;
+  for(int i = 0; i < tamanho; i++){ 
+      cout << "Digite o nome " << i+1 << ": ";
+      cin >> nomes[i];
+  }
+}
+
+float MediaVetor (){
+  float media = 0;
+  int tot = sizeof(idade)/sizeof(int);
+  for (int i = 0; i< tot; i++){ 
+      media += idade[i]; 
+  }
+  media /= tot;
+  return media; // retorna o valor calculado da mÈdia
 }
 
 void Mostrar(){
 
-cout << "\nMaior:" << maior;
-cout << "\nMenor" << menor << endl;
+  int tamanho = 6;
+  for(int i = 0; i < tamanho; i++){
+
+    cout << "\n" << nomes[i] << " - " << idade[i] << " anos";
+
+  }
+  cout << "\n\nMaior: " << maior << " anos";
+  cout << "\nMenor: " << menor << " anos";
+  cout << "\nMÈdia: " << media << " anos" << endl;
 }
